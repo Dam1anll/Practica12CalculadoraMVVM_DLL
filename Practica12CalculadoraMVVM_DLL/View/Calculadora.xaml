@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Practica12CalculadoraMVVM_DLL.View.Calculadora">
+    
+    <Grid BackgroundColor="#2E3034">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackLayout BackgroundColor="#1C1E21">
+            <Label Text="Calculadora" TextColor="White"/>
+        </StackLayout>
+        <StackLayout VerticalOptions="Center">
+            <Entry x:Name="Display" Grid.Row="0" Text="0" FontSize="Large" HorizontalTextAlignment="End" TextColor="White" Keyboard="Numeric" 
+               VerticalOptions="CenterAndExpand" Margin="20"/>
+        </StackLayout>
+        <Grid Grid.Row="1" RowSpacing="1" ColumnSpacing="1" BackgroundColor="#1C1E21" VerticalOptions="Fill">
+
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+
+            </Grid.ColumnDefinitions>
+
+            <Button Text="C" Grid.Row="1" Grid.Column="0" BackgroundColor="#1843A9" Clicked="LimpiarButton" TextColor="White"/>
+            <Button Text="/" Grid.Row="1" Grid.Column="1" BackgroundColor="#1843A9" Clicked="OperadorButton" TextColor="White"/>
+            <Button Text="*" Grid.Row="1" Grid.Column="2" BackgroundColor="#1843A9" Clicked="OperadorButton" TextColor="White"/>
+            <Button x:Name="Borrar" Text="Borrar" Grid.Row="1" Grid.Column="3" BackgroundColor="#1843A9" Clicked="BorrarButton" TextColor="White"/>
+
+            <Button Text="7" Grid.Row="2" Grid.Column="0" BackgroundColor="#1C1E21" Clicked="NumeroButton" CornerRadius="10" TextColor="White"/>
+            <Button Text="8" Grid.Row="2" Grid.Column="1" BackgroundColor="#1C1E21" Clicked="NumeroButton" CornerRadius="10" TextColor="White"/>
+            <Button Text="9" Grid.Row="2" Grid.Column="2" BackgroundColor="#1C1E21" Clicked="NumeroButton" CornerRadius="10" TextColor="White"/>
+            <Button Text="-" Grid.Row="2" Grid.Column="3" BackgroundColor="#1843A9" Clicked="OperadorButton" TextColor="White"/>
+
+            <Button Text="4" Grid.Row="3" Grid.Column="0" BackgroundColor="#1C1E21" Clicked="NumeroButton" CornerRadius="10" TextColor="White"/>
+            <Button Text="5" Grid.Row="3" Grid.Column="1" BackgroundColor="#1C1E21" Clicked="NumeroButton" CornerRadius="10" TextColor="White"/>
+            <Button Text="6" Grid.Row="3" Grid.Column="2" BackgroundColor="#1C1E21" Clicked="NumeroButton" CornerRadius="10" TextColor="White"/>
+            <Button Text="+" Grid.Row="3" Grid.Column="3" BackgroundColor="#1843A9" Clicked="OperadorButton" TextColor="White"/>
+
+            <Button Text="1" Grid.Row="4" Grid.Column="0" BackgroundColor="#1C1E21" Clicked="NumeroButton" CornerRadius="10" TextColor="White"/>
+            <Button Text="2" Grid.Row="4" Grid.Column="1" BackgroundColor="#1C1E21" Clicked="NumeroButton" CornerRadius="10" TextColor="White"/>
+            <Button Text="3" Grid.Row="4" Grid.Column="2" BackgroundColor="#1C1E21" Clicked="NumeroButton" CornerRadius="10" TextColor="White"/>
+
+            <Button Text="=" Grid.Row="4" Grid.Column="3" Grid.RowSpan="2" BackgroundColor="#131c46" Clicked="IgualButton" CornerRadius="10" TextColor="White"/>
+
+            <Button Text="%" Grid.Row="5" Grid.Column="0" BackgroundColor="#1C1E21" Clicked="OperadorButton" CornerRadius="10" TextColor="White"/>
+            <Button Text="0" Grid.Row="5" Grid.Column="1" BackgroundColor="#1C1E21" Clicked="NumeroButton" CornerRadius="10" TextColor="White"/>
+            <Button Text="." Grid.Row="5" Grid.Column="2" BackgroundColor="#1C1E21" Clicked="NumeroButton" CornerRadius="10" TextColor="White"/>
+            <Button Text="=" Grid.Row="4" Grid.Column="3" Grid.RowSpan="2" BackgroundColor="#1843A9" Clicked="IgualButton" TextColor="White"/>
+
+        </Grid>
+    </Grid>
+</ContentPage>
