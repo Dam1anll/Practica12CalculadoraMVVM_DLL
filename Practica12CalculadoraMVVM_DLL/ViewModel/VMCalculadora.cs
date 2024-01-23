@@ -17,9 +17,19 @@ namespace Practica12CalculadoraMVVM_DLL.ViewModel
         #region VARIABLES
         private string _displayText = "0";
         private double _currentValue = 0;
+        private List<double> _values = new List<double>();
+        private List<string> _operators = new List<string>();
         #endregion
 
-        #region PROPERTIES
+        #region CONTRUCTOR
+        public VMCalculadora(INavigation navigation)
+        {
+            Navigation = navigation;
+            InitializeCommands();
+        }
+        #endregion
+
+        #region OBJETOS
         public string DisplayText
         {
             get { return _displayText; }
@@ -32,34 +42,16 @@ namespace Practica12CalculadoraMVVM_DLL.ViewModel
                 }
             }
         }
-
-        public ICommand NumberCommand { get; private set; }
-        public ICommand OperatorCommand { get; private set; }
-        public ICommand EqualsCommand { get; private set; }
-        public ICommand DeleteCommand { get; private set; }
-        #endregion
-
-        #region CONTRUCTOR
-        public VMCalculadora(INavigation navigation)
-        {
-            Navigation = navigation;
-            InitializeCommands();
-        }
-        #endregion
-
-        #region OBJETOS
         #endregion
 
         #region PROCESOS
-        #endregion
-
-        #region COMANDOS
         private void InitializeCommands()
         {
             NumberCommand = new Command<string>(UpdateDisplay);
             OperatorCommand = new Command<string>(ApplyOperator);
             EqualsCommand = new Command(PerformCalculation);
             DeleteCommand = new Command(DeleteLastDigit);
+            ClearCommand = new Command(ClearAll);
         }
 
         private void UpdateDisplay(string number)
@@ -78,7 +70,8 @@ namespace Practica12CalculadoraMVVM_DLL.ViewModel
         {
             if (double.TryParse(DisplayText, out double enteredValue))
             {
-                _currentValue = enteredValue;
+                _values.Add(enteredValue);
+                _operators.Add(operatorSymbol);
                 DisplayText = "0";
             }
         }
@@ -87,8 +80,38 @@ namespace Practica12CalculadoraMVVM_DLL.ViewModel
         {
             if (double.TryParse(DisplayText, out double currentValue))
             {
-                _currentValue += currentValue;
-                DisplayText = _currentValue.ToString();
+                _values.Add(currentValue);
+
+                for (int i = 0; i < _operators.Count; i++)
+                {
+                    switch (_operators[i])
+                    {
+                        case "+":
+                            _values[i + 1] += _values[i];
+                            break;
+                        case "-":
+                            _values[i + 1] = _values[i] - _values[i + 1];
+                            break;
+                        case "X":
+                            _values[i + 1] *= _values[i];
+                            break;
+                        case "÷":
+                            if (_values[i + 1] != 0)
+                            {
+                                _values[i + 1] = _values[i] / _values[i + 1];
+                            }
+                            else
+                            {
+                                DisplayText = "Error";
+                                return;
+                            }
+                            break;
+                    }
+                }
+
+                DisplayText = _values.Last().ToString();
+                _values.Clear();
+                _operators.Clear();
             }
         }
 
@@ -103,6 +126,21 @@ namespace Practica12CalculadoraMVVM_DLL.ViewModel
                 DisplayText = "0";
             }
         }
+
+        private void ClearAll()
+        {
+            DisplayText = "0";
+            _values.Clear();
+            _operators.Clear();
+        }
+        #endregion
+
+        #region COMANDOS
+        public ICommand NumberCommand { get; private set; }
+        public ICommand OperatorCommand { get; private set; }
+        public ICommand EqualsCommand { get; private set; }
+        public ICommand DeleteCommand { get; private set; }
+        public ICommand ClearCommand { get; private set; }
         #endregion
     }
 }
