@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Practica12CalculadoraMVVM_DLL.ViewModel;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,7 +13,15 @@ namespace Practica12CalculadoraMVVM_DLL.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Calculadora : ContentPage
     {
-        private string currentNumber = string.Empty;
+        public Calculadora() 
+        {
+            InitializeComponent();
+            BindingContext = new VMCalculadora(Navigation);
+        }
+    }
+}
+
+/*private string currentNumber = string.Empty;
         private string leftOperand = string.Empty;
         private string rightOperand = string.Empty;
         private string currentOperator = string.Empty;
@@ -135,6 +144,4 @@ namespace Practica12CalculadoraMVVM_DLL.View
                     Display.Text = currentNumber;
                 }
             }
-        }
-    }
-}
+        }*/
