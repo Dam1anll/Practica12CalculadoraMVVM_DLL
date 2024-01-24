@@ -18,6 +18,7 @@ namespace Practica12CalculadoraMVVM_DLL.View
             InitializeComponent();
             BindingContext = new VMCalculadora(Navigation);
         }
+
     }
 }
 

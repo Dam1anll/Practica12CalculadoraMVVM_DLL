@@ -15,6 +15,129 @@ namespace Practica12CalculadoraMVVM_DLL.ViewModel
     public class VMCalculadora : BaseViewModel
     {
         #region VARIABLES
+        private string _datos = "0";
+        private double _numeros = 0;
+        private List<double> _valores = new List<double>();
+        private List<string> _operadores = new List<string>();
+        #endregion
+        #region CONTRUCTOR
+        public VMCalculadora(INavigation navigation)
+        {
+            Navigation = navigation;
+        }
+        #endregion
+        #region OBJETOS
+        public string Datos
+        {
+            get { return _datos; }
+            set
+            {
+                if (_datos != value)
+                {
+                    _datos = value;
+                    OnPropertyChanged(nameof(Datos));
+                }
+            }
+        }
+        #endregion
+        #region PROCESOS
+        private async Task ActualizarDatos(string numero)
+        {
+            if (Datos == "0" || Datos == "Error")
+            {
+                Datos = numero;
+            }
+            else
+            {
+                if (numero == "." && Datos.Contains("."))
+                {
+                    return;
+                }
+
+                Datos += numero;
+            }
+        }
+        private async Task AplicarOperador(string operador)
+        {
+            if (double.TryParse(Datos, out double valor))
+            {
+                _valores.Add(valor);
+                _operadores.Add(operador);
+                Datos = "0";
+             
+            }
+        }
+        private async Task Calcular()
+        {
+            if (double.TryParse(Datos, out double currentValue))
+            {
+                _valores.Add(currentValue);
+
+                for (int i = 0; i < _operadores.Count; i++)
+                {
+                    switch (_operadores[i])
+                    {
+                        case "+":
+                            _valores[i + 1] += _valores[i];
+                            break;
+                        case "-":
+                            _valores[i + 1] = _valores[i] - _valores[i + 1];
+                            break;
+                        case "X":
+                            _valores[i + 1] *= _valores[i];
+                            break;
+                        case "÷":
+                            if (_valores[i + 1] != 0)
+                            {
+                                _valores[i + 1] = _valores[i] / _valores[i + 1];
+                            }
+                            else
+                            {
+                                Datos = "Error";
+                                return;
+                            }
+                            break;
+                        case "%":
+                            _valores[i + 1] = _valores[i] * (_valores[i + 1] / 100); 
+                            break;
+                    }
+                }
+
+                Datos = _valores.Last().ToString();
+                _valores.Clear();
+                _operadores.Clear();
+            }
+        }
+        private async Task BorrarUnoPorUno()
+        {
+            if (Datos.Length > 1)
+            {
+                Datos = Datos.Substring(0, Datos.Length - 1);
+            }
+            else
+            {
+                Datos = "0";
+            }
+        }
+        private async Task BorrarTodo()
+        {
+            Datos = "0";
+            _valores.Clear();
+            _operadores.Clear();
+        }
+     
+        #endregion
+        #region COMANDOS
+        public ICommand ActualizarDatosCommand => new Command<string>(async (numero) => await ActualizarDatos(numero));
+        public ICommand AplicarOperadorCommand => new Command<string>(async (operador) => await AplicarOperador(operador));
+        public ICommand CalcularCommand => new Command(async () => await Calcular());
+        public ICommand BorrarUnoPorUnoCommand => new Command(async () => await BorrarUnoPorUno());
+        public ICommand BorrarTodoCommand => new Command(async () => await BorrarTodo());
+        #endregion
+    }
+}
+
+/*#region VARIABLES
         private string _displayText = "0";
         private double _currentValue = 0;
         private List<double> _values = new List<double>();
@@ -27,9 +150,9 @@ namespace Practica12CalculadoraMVVM_DLL.ViewModel
             Navigation = navigation;
             InitializeCommands();
         }
-        #endregion
+        #endregion*/
 
-        #region OBJETOS
+/*#region OBJETOS
         public string DisplayText
         {
             get { return _displayText; }
@@ -42,9 +165,9 @@ namespace Practica12CalculadoraMVVM_DLL.ViewModel
                 }
             }
         }
-        #endregion
+        #endregion*/
 
-        #region PROCESOS
+        /*#region PROCESOS
         private void InitializeCommands()
         {
             NumberCommand = new Command<string>(UpdateDisplay);
@@ -142,6 +265,5 @@ namespace Practica12CalculadoraMVVM_DLL.ViewModel
         public ICommand DeleteCommand { get; private set; }
         public ICommand ClearCommand { get; private set; }
         #endregion
-    }
-}
+        */
 

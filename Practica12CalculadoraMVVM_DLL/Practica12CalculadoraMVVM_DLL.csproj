@@ -11,8 +11,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Model\**" />
     <Compile Remove="Triggers\**" />
+    <EmbeddedResource Remove="Model\**" />
     <EmbeddedResource Remove="Triggers\**" />
+    <None Remove="Model\**" />
     <None Remove="Triggers\**" />
   </ItemGroup>
 
@@ -25,9 +28,5 @@
     <EmbeddedResource Update="View\Calculadora.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Model\" />
   </ItemGroup>
 </Project>

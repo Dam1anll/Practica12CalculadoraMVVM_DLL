@@ -5,8 +5,8 @@
 
     <StackLayout BackgroundColor="#2E3034">
         <StackLayout VerticalOptions="Center" BackgroundColor="#2E3034">
-            <Entry Text="{Binding DisplayText}" FontSize="50" HorizontalTextAlignment="End" TextColor="White" Keyboard="Numeric" 
-               VerticalOptions="CenterAndExpand" Margin="20,35,20,35" IsReadOnly="True" Placeholder="0" PlaceholderColor="White"/>
+            <Entry Text="{Binding Datos}" FontSize="50" HorizontalTextAlignment="End" TextColor="White" Keyboard="Numeric" 
+               VerticalOptions="CenterAndExpand" Margin="20,50,20,50" IsReadOnly="True" Placeholder="0" PlaceholderColor="White"/>
         </StackLayout>
         <Grid BackgroundColor="#2E3034" Padding="0,0,0,0">
             <Grid.RowDefinitions>
@@ -35,29 +35,29 @@
 
                 </Grid.ColumnDefinitions>
 
-                <Button Text="C" Grid.Row="1" Grid.Column="0" BackgroundColor="#1843A9" TextColor="White" Padding="0,45,0,45" Command="{Binding DeleteCommand}"/>
-                <Button Text="÷" Grid.Row="1" Grid.Column="1" BackgroundColor="#1843A9" TextColor="White" Padding="0,45,0,45" Command="{Binding OperatorCommand}" CommandParameter="÷"/>
-                <Button Text="X" Grid.Row="1" Grid.Column="2" BackgroundColor="#1843A9" TextColor="White" Padding="0,45,0,45" Command="{Binding OperatorCommand}" CommandParameter="X"/>
-                <Button Text="Borrar" Grid.Row="1" Grid.Column="3" BackgroundColor="#1843A9" TextColor="White" Padding="0,45,0,45" Command="{Binding DeleteCommand}"/>
+                <Button Text="C" Grid.Row="1" Grid.Column="0" BackgroundColor="#1843A9" TextColor="White" Padding="0,45,0,45" Command="{Binding BorrarTodoCommand}"/>
+                <Button Text="÷" Grid.Row="1" Grid.Column="1" BackgroundColor="#1843A9" TextColor="White" Padding="0,45,0,45" Command="{Binding AplicarOperadorCommand}" CommandParameter="÷"/>
+                <Button Text="X" Grid.Row="1" Grid.Column="2" BackgroundColor="#1843A9" TextColor="White" Padding="0,45,0,45" Command="{Binding AplicarOperadorCommand}" CommandParameter="X"/>
+                <Button Text="Borrar" Grid.Row="1" Grid.Column="3" BackgroundColor="#1843A9" TextColor="White" Padding="0,45,0,45" Command="{Binding BorrarUnoPorUnoCommand}"/>
 
-                <Button Text="7" Grid.Row="2" Grid.Column="0" BackgroundColor="#1C1E21" CornerRadius="10" TextColor="White" Padding="0,45,0,45" Command="{Binding NumberCommand}" CommandParameter="7"/>
-                <Button Text="8" Grid.Row="2" Grid.Column="1" BackgroundColor="#1C1E21" CornerRadius="10" TextColor="White" Padding="0,45,0,45" Command="{Binding NumberCommand}" CommandParameter="8"/>
-                <Button Text="9" Grid.Row="2" Grid.Column="2" BackgroundColor="#1C1E21" CornerRadius="10" TextColor="White" Padding="0,45,0,45" Command="{Binding NumberCommand}" CommandParameter="9"/>
-                <Button Text="-" Grid.Row="2" Grid.Column="3" BackgroundColor="#1843A9" TextColor="White" Padding="0,45,0,45" Command="{Binding OperatorCommand}"  CommandParameter="-"/>
+                <Button Text="7" Grid.Row="2" Grid.Column="0" BackgroundColor="#1C1E21" CornerRadius="10" TextColor="White" Padding="0,45,0,45" Command="{Binding ActualizarDatosCommand}" CommandParameter="7"/>
+                <Button Text="8" Grid.Row="2" Grid.Column="1" BackgroundColor="#1C1E21" CornerRadius="10" TextColor="White" Padding="0,45,0,45" Command="{Binding ActualizarDatosCommand}" CommandParameter="8"/>
+                <Button Text="9" Grid.Row="2" Grid.Column="2" BackgroundColor="#1C1E21" CornerRadius="10" TextColor="White" Padding="0,45,0,45" Command="{Binding ActualizarDatosCommand}" CommandParameter="9"/>
+                <Button Text="-" Grid.Row="2" Grid.Column="3" BackgroundColor="#1843A9" TextColor="White" Padding="0,45,0,45" Command="{Binding AplicarOperadorCommand}"  CommandParameter="-"/>
 
-                <Button Text="4" Grid.Row="3" Grid.Column="0" BackgroundColor="#1C1E21" CornerRadius="10" TextColor="White" Padding="0,45,0,45" Command="{Binding NumberCommand}" CommandParameter="4"/>
-                <Button Text="5" Grid.Row="3" Grid.Column="1" BackgroundColor="#1C1E21" CornerRadius="10" TextColor="White" Padding="0,45,0,45" Command="{Binding NumberCommand}" CommandParameter="5"/>
-                <Button Text="6" Grid.Row="3" Grid.Column="2" BackgroundColor="#1C1E21" CornerRadius="10" TextColor="White" Padding="0,45,0,45" Command="{Binding NumberCommand}" CommandParameter="6"/>
-                <Button Text="+" Grid.Row="3" Grid.Column="3" BackgroundColor="#1843A9" TextColor="White" Padding="0,45,0,45" Command="{Binding OperatorCommand}" CommandParameter="+"/>
+                <Button Text="4" Grid.Row="3" Grid.Column="0" BackgroundColor="#1C1E21" CornerRadius="10" TextColor="White" Padding="0,45,0,45" Command="{Binding ActualizarDatosCommand}" CommandParameter="4"/>
+                <Button Text="5" Grid.Row="3" Grid.Column="1" BackgroundColor="#1C1E21" CornerRadius="10" TextColor="White" Padding="0,45,0,45" Command="{Binding ActualizarDatosCommand}" CommandParameter="5"/>
+                <Button Text="6" Grid.Row="3" Grid.Column="2" BackgroundColor="#1C1E21" CornerRadius="10" TextColor="White" Padding="0,45,0,45" Command="{Binding ActualizarDatosCommand}" CommandParameter="6"/>
+                <Button Text="+" Grid.Row="3" Grid.Column="3" BackgroundColor="#1843A9" TextColor="White" Padding="0,45,0,45" Command="{Binding AplicarOperadorCommand}" CommandParameter="+"/>
 
-                <Button Text="1" Grid.Row="4" Grid.Column="0" BackgroundColor="#1C1E21" CornerRadius="10" TextColor="White" Padding="0,45,0,45" Command="{Binding NumberCommand}" CommandParameter="1"/>
-                <Button Text="2" Grid.Row="4" Grid.Column="1" BackgroundColor="#1C1E21" CornerRadius="10" TextColor="White" Padding="0,45,0,45" Command="{Binding NumberCommand}" CommandParameter="2"/>
-                <Button Text="3" Grid.Row="4" Grid.Column="2" BackgroundColor="#1C1E21" CornerRadius="10" TextColor="White" Padding="0,45,0,45" Command="{Binding NumberCommand}" CommandParameter="3"/>
+                <Button Text="1" Grid.Row="4" Grid.Column="0" BackgroundColor="#1C1E21" CornerRadius="10" TextColor="White" Padding="0,45,0,45" Command="{Binding ActualizarDatosCommand}" CommandParameter="1"/>
+                <Button Text="2" Grid.Row="4" Grid.Column="1" BackgroundColor="#1C1E21" CornerRadius="10" TextColor="White" Padding="0,45,0,45" Command="{Binding ActualizarDatosCommand}" CommandParameter="2"/>
+                <Button Text="3" Grid.Row="4" Grid.Column="2" BackgroundColor="#1C1E21" CornerRadius="10" TextColor="White" Padding="0,45,0,45" Command="{Binding ActualizarDatosCommand}" CommandParameter="3"/>
 
-                <Button Text="%" Grid.Row="5" Grid.Column="0" BackgroundColor="#1C1E21" CornerRadius="10" TextColor="White" Padding="0,45,0,45"/>
-                <Button Text="0" Grid.Row="5" Grid.Column="1" BackgroundColor="#1C1E21" CornerRadius="10" TextColor="White" Padding="0,45,0,45" Command="{Binding NumberCommand}" CommandParameter="0"/>
-                <Button Text="." Grid.Row="5" Grid.Column="2" BackgroundColor="#1C1E21" CornerRadius="10" TextColor="White" Padding="0,45,0,45"/>
-                <Button Text="=" Grid.Row="4" Grid.Column="3" Grid.RowSpan="2" BackgroundColor="#1843A9" TextColor="White" Padding="0,45,0,45" Command="{Binding EqualsCommand}"/>
+                <Button Text="%" Grid.Row="5" Grid.Column="0" BackgroundColor="#1C1E21" CornerRadius="10" TextColor="White" Padding="0,45,0,45" Command="{Binding AplicarOperadorCommand}" CommandParameter="%"/>
+                <Button Text="0" Grid.Row="5" Grid.Column="1" BackgroundColor="#1C1E21" CornerRadius="10" TextColor="White" Padding="0,45,0,45" Command="{Binding ActualizarDatosCommand}" CommandParameter="0"/>
+                <Button Text="." Grid.Row="5" Grid.Column="2" BackgroundColor="#1C1E21" CornerRadius="10" TextColor="White" Padding="0,45,0,45" Command="{Binding ActualizarDatosCommand}" CommandParameter="."/>
+                <Button Text="=" Grid.Row="4" Grid.Column="3" Grid.RowSpan="2" BackgroundColor="#1843A9" TextColor="White" Padding="0,45,0,45" Command="{Binding CalcularCommand}"/>
             </Grid>
         </Grid>
     </StackLayout>
